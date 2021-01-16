@@ -5,16 +5,19 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  font-family: ;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+    color: rgba(0, 0, 0, 0.884);
+    background-image: url()
   }
 }
 
 .App-header {
-  background-color: #282c34;
+  margin-bottom: ;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -1,25 +1,82 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Switch, Route, Link, useHistory } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import CustomersPage from './pages/CustomersPage';
+import CustomerCreatePage from './pages/CustomerCreatePage';
+import CustomerDetailPage from './pages/CustomerDetailPage';
+import CustomerUpdatePage from './pages/CustomerUpdatePage';
+import { ContextInfo } from './contexts/ContextInfo';
+import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
 
+
+const Div = styled.div`
+    background: black;
+    height: 950px;
+`
+const Heading = styled.h1`
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  `
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+  const history = useHistory();
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  });
+  const [customerList, setCustomerList] = useState([]);
+  const [profileData, setProfileData] = useState({});
+  const [token, setToken] = useState("");
+
+  const contextValues = {
+    loginData, setLoginData,
+    customerList, setCustomerList,
+    profileData, setProfileData,
+  }
+
+
+  useEffect(() => {
+    history.push('/login')
+  }, [])
+
+
+  return <Div className="Container">
+    <Heading>HARALD AB</Heading>
+
+
+
+    <ContextInfo.Provider value={contextValues}>
+      <Switch>
+
+        <Route path="/home">
+          <HomePage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/profile">
+          <ProfilePage />
+        </Route>
+
+        <Route path="/customers/create">
+          <CustomerCreatePage />
+        </Route>
+        <Route path="/customers/:id/edit" component={CustomerUpdatePage} />
+        <Route path="/customers/:id" component={CustomerDetailPage} />
+        <Route path="/customers">
+          <CustomersPage />
+        </Route>
+
+      </Switch>
+    </ContextInfo.Provider>
+
+  </Div>;
 }
 
 export default App;
