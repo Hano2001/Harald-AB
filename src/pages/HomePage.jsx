@@ -1,6 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { ContextInfo } from "../contexts/ContextInfo";
 import NavBar from "../components/NavBar";
+import {Welcome, Img} from "../components/StyledHomePage";
+import img from "../images/self.jpg";
+
 
 export default function HomePage({ token }) {
   const { setCustomerList } = useContext(ContextInfo);
@@ -30,7 +33,11 @@ export default function HomePage({ token }) {
   return (
     <div>
       <NavBar />
-      <h1>HARALD AB</h1>
+      <Welcome> WELCOME TO HARALD AB</Welcome>
+      <div className="container d-flex justify-content-center">
+        <Img src={img}/>
+        </div>
+      
     </div>
   );
 }

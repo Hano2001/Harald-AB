@@ -9,18 +9,8 @@ import CustomerUpdatePage from "./pages/CustomerUpdatePage";
 import { ContextInfo } from "./contexts/ContextInfo";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
+import {Div,Heading} from "./components/StyledApp"
 
-const Div = styled.div`
-  //background: black;
-
-  height: 950px;
-`;
-const Heading = styled.h1`
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-`;
 function App() {
   const history = useHistory();
   const [loginData, setLoginData] = useState({

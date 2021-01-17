@@ -1,27 +1,8 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ContextInfo } from "../contexts/ContextInfo";
-import styled from "styled-components";
+import{Div, Input, Button} from "../components/StyledLoginPage"
 
-const Div = styled.div`
-  height: 300px;
-  width: 400px;
-  text-align: center;
-  margin-left: 40%;
-  margin-right: 40%;
-  border: solid white;
-  color: white;
-`;
-
-const Input = styled.input`
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-bottom: 10px;
-`;
-
-const Button = styled.button`
-  margin-top: 40px;
-`;
 
 export default function LoginPage({ onLogin }) {
   const { loginData, setLoginData } = useContext(ContextInfo);

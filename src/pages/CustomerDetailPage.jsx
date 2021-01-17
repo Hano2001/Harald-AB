@@ -1,40 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { ContextInfo } from "../contexts/ContextInfo";
-import styled from "styled-components";
+import  {Div, H4, Table, DeleteButton, EditButton} from '../components/StyledDetailPage'
 
-const Div = styled.div`
-  border: solid red;
-  width: 600px;
-  justify-content: center;
-  margin: 10px;
-  padding: 30px;
-  text-align: center;
-`;
-const H4 = styled.h4`
-  color: white;
-  font-weight: bold;
-`;
-
-const Table = styled.table`
-  margin-right: 20%;
-  margin-left: 20%;
-  td {
-    background: white;
-    border: solid red;
-    padding-right: 10px;
-    font-weight: bold;
-  }
-`;
-
-const DeleteButton = styled.button`
-  float: left;
-`;
-
-const EditButton = styled(DeleteButton)`
-  float: right;
-`;
 
 export default function CustomerDetailPage(props) {
   const customerId = props.match.params.id;
@@ -68,6 +37,10 @@ export default function CustomerDetailPage(props) {
       .then((data) => setCustomerItem(data));
   }
 
+  function customerEdit(){
+      history.push(`/customers/${customerId}/edit`)
+  }
+
   function customerDelete() {
     fetch(url, {
       method: "DELETE",
@@ -84,6 +57,26 @@ export default function CustomerDetailPage(props) {
     getCustomerDetails();
   }, []);
 
+  function TableReturn({ name, item }) {
+    const details = [
+      { name: "Organisation Number:", item: customerItem.organisationNr },
+      { name: "Payment Term:", item: customerItem.paymentTerm },
+      { name: "Phone Number:", item: customerItem.phoneNumber },
+      { name: "Reference:", item: customerItem.reference },
+      { name: "VAT Number:", item: customerItem.vatNr },
+      { name: "E-Mail:", item: customerItem.email },
+    ];
+
+    return details.map((item, index) => {
+      return (
+        <tr>
+          <td>{item.name}</td>
+          <td>{item.item}</td>
+        </tr>
+      );
+    });
+  }
+
   return (
     <div>
       <>
@@ -94,36 +87,7 @@ export default function CustomerDetailPage(props) {
           <H4>{customerItem.name}</H4>
           <Table>
             <tbody>
-              <tr>
-                <td>Organisation Number:</td>
-                <td>{customerItem.organisationNr}</td>
-              </tr>
-
-              <tr>
-                <td>Payment Term:</td>
-                <td>{customerItem.paymentTerm}</td>
-              </tr>
-
-              <tr>
-                <td>Phone Number:</td>
-                <td>{customerItem.phoneNumber}</td>
-              </tr>
-
-              <tr>
-                <td>Reference:</td>
-                <td>{customerItem.reference}</td>
-              </tr>
-
-              <tr>
-                <td>VAT Number:</td>
-                <td>{customerItem.vatNr}</td>
-              </tr>
-
-              <tr>
-                <td>E-Mail:</td>
-                <td>{customerItem.email}</td>
-              </tr>
-
+              <TableReturn />
               <tr>
                 <td>Website:</td>
                 <td>
@@ -134,11 +98,12 @@ export default function CustomerDetailPage(props) {
               </tr>
             </tbody>
           </Table>
-          <DeleteButton className="btn btn-danger" onClick={customerDelete}>
+          <DeleteButton className="btn-btn btn-block btn-danger" onClick={customerDelete}>
             DELETE
           </DeleteButton>
-          <EditButton className="btn btn-danger">
-            <Link to={`/customers/${customerId}/edit`}>Edit</Link>
+          <EditButton onClick={customerEdit}
+          className="btn-btn btn-block btn-warning">
+            UPDATE
           </EditButton>
         </Div>
       ) : (

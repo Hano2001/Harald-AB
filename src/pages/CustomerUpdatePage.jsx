@@ -1,22 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import styled from "styled-components";
+import {Div, Heading, H6} from '../components/StyledCreateUpdate'
 import { ContextInfo } from "../contexts/ContextInfo";
 
-const Div = styled.div`
-background: tomato;
-height: 40px
-text-shadow: orchid;
-justify-content: center;
-`;
-
-const Input = styled.input`
-  float: right;
-`;
-const H6 = styled.h6`
-  font-family: fantasy;
-`;
 
 export default function CustomerUpdatePage(props) {
   const { setCustomerList } = useContext(ContextInfo);
@@ -106,7 +93,7 @@ export default function CustomerUpdatePage(props) {
         <label>
           <H6>{label}</H6>
         </label>
-        <Input
+        <input
           type={type || "text"}
           name={name}
           onChange={handleOnChange}
@@ -123,7 +110,7 @@ export default function CustomerUpdatePage(props) {
         <label>
           <H6>{label}</H6>
         </label>
-        <Input
+        <input
           type={type || "text"}
           name={name}
           onChange={handleOnChange}
@@ -138,7 +125,7 @@ export default function CustomerUpdatePage(props) {
       <>
         <NavBar />
       </>
-      <h5>Update</h5>
+      <Heading>Update Customer</Heading>
       <form onSubmit={handleOnSubmit}>
         {renderInput("name", "Customer Name:")}
 
@@ -149,7 +136,7 @@ export default function CustomerUpdatePage(props) {
         {renderVatInput("vatNr", "Vat Number:")}
         {renderInput("email", "Customer Email:")}
         {renderInput("website", "Website", "url")}
-        <button type="submit">Update Customer</button>
+        <button className="btn-btn btn-block btn-success" type="submit">Update Customer</button>
       </form>
     </div>
   );

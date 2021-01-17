@@ -1,23 +1,10 @@
 import React, { useRef, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import styled from "styled-components";
-
+import {Div, Heading, H6, ButtonDiv,Button} from '../components/StyledCreateUpdate'
 import { ContextInfo } from "../contexts/ContextInfo";
 
-const Div = styled.div`
-background: tomato;
-height: 40px
-text-shadow: orchid;
-justify-content: center;
-`;
 
-const Input = styled.input`
-  float: right;
-`;
-const H6 = styled.h6`
-  font-family: fantasy;
-`;
 export default function CustomerCreatePage() {
   const url = "https://frebi.willandskill.eu/api/v1/customers/";
   const { setCustomerList } = useContext(ContextInfo);
@@ -43,7 +30,7 @@ export default function CustomerCreatePage() {
         <label>
           <H6>{label}</H6>
         </label>
-        <Input
+        <input
           type={type || "text"}
           name={name}
           onChange={handleOnChange}
@@ -68,7 +55,7 @@ export default function CustomerCreatePage() {
           <H6>{label}</H6>
         </label>
 
-        <Input type={type || "text"} name={name} onChange={handleOnChange} />
+        <input type={type || "text"} name={name} onChange={handleOnChange} />
       </Div>
     );
   }
@@ -116,7 +103,7 @@ export default function CustomerCreatePage() {
       <>
         <NavBar />
       </>
-      <h5>Create Customer</h5>
+      <Heading>Create Customer</Heading>
       <form onSubmit={handleOnSubmit}>
         {renderInput("name", "Customer Name:")}
         {renderInput("email", "Customer Email:")}
@@ -126,7 +113,9 @@ export default function CustomerCreatePage() {
         {renderInput("reference", "Reference:")}
         {renderVatInput("vatNr", "Vat Number")}
         {renderInput("website", "Website", "url")}
-        <button type="submit">Create Customer</button>
+        <ButtonDiv>
+        <Button className="btn-btn btn-block btn-success" type="submit">Create Customer</Button>
+        </ButtonDiv>
       </form>
     </div>
   );
