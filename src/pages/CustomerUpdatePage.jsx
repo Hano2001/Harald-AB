@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import {Div, Heading, H6} from '../components/StyledCreateUpdate'
+import { Div, Heading, H6, ButtonDiv } from "../components/StyledCreateUpdate";
 import { ContextInfo } from "../contexts/ContextInfo";
-
+import { VatCheck } from "../utilities/Vat";
 
 export default function CustomerUpdatePage(props) {
   const { setCustomerList } = useContext(ContextInfo);
@@ -46,39 +46,27 @@ export default function CustomerUpdatePage(props) {
   }
 
   function validVat(e) {
-    const vatNumber = vatRef.current.value;
-
     e.preventDefault();
-    if (vatNumber.length === 12) {
-      const vatString = vatNumber.toString();
-      const vatFirst = vatString.slice(0, 2);
-      const vatLast = vatString.slice(2, 12);
-      const isNumber = Number(vatLast);
+    const vatNumber = vatRef.current.value;
+    const validVatCheck = VatCheck(vatNumber);
 
-      if (vatFirst === "SE" && isNaN(isNumber) === false) {
-        console.log(typeof isNumber);
-        console.log(isNumber);
-        fetch(url, {
-          method: "PUT",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+    if (validVatCheck === true) {
+      fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          getCustomers();
         })
-          .then((res) => res.json())
-          .then((data) => {
-            getCustomers();
-          })
-          .then(history.push("/customers"));
-      } else {
-        window.alert(
-          "Invalid VATNR, have you included SE in the beginning followed by 10 digits?"
-        );
-      }
+        .then(history.push("/customers"));
     } else {
       window.alert(
-        "VATNR invalid, please enter a valid VATNR (start with SE, followed by 10 digits)"
+        "Invalid VATNR, have you included SE in the beginning followed by 10 digits?"
       );
     }
   }
@@ -136,7 +124,11 @@ export default function CustomerUpdatePage(props) {
         {renderVatInput("vatNr", "Vat Number:")}
         {renderInput("email", "Customer Email:")}
         {renderInput("website", "Website", "url")}
-        <button className="btn-btn btn-block btn-success" type="submit">Update Customer</button>
+        <ButtonDiv>
+          <button className="btn-btn btn-block btn-success" type="submit">
+            Update Customer
+          </button>
+        </ButtonDiv>
       </form>
     </div>
   );

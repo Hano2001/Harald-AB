@@ -39,6 +39,7 @@ const P = styled.p`
 const P2 = styled.p`
   float: right;
   margin-top: -30px;
+  margin-left: 100px;
 `;
 
 const P3 = styled(P2)`
@@ -61,11 +62,18 @@ const EyeDiv = styled.div`
   width: 75px;
   margin-left: 40%;
   margin-right: 40%;
-
-  position: relative;
 `;
 
-export {Heading,
-         Div1,Div2,Div3,Div4, 
-         P,P2,P3,
-         LeftEye,RightEye,EyeDiv}
+export {
+  Heading,
+  Div1,
+  Div2,
+  Div3,
+  Div4,
+  P,
+  P2,
+  P3,
+  LeftEye,
+  RightEye,
+  EyeDiv,
+};

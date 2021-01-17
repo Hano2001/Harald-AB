@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { Switch, Route, useHistory } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import CustomersPage from "./pages/CustomersPage";
@@ -9,7 +8,7 @@ import CustomerUpdatePage from "./pages/CustomerUpdatePage";
 import { ContextInfo } from "./contexts/ContextInfo";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
-import {Div,Heading} from "./components/StyledApp"
+import { Div, Heading } from "./components/StyledApp";
 
 function App() {
   const history = useHistory();
@@ -59,7 +58,7 @@ function App() {
           </Route>
 
           <Route path="/customers/create">
-            <CustomerCreatePage token={token} />
+            <CustomerCreatePage />
           </Route>
           <Route path="/customers/:id/edit" component={CustomerUpdatePage} />
           <Route path="/customers/:id" component={CustomerDetailPage} />

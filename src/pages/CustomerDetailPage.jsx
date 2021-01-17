@@ -2,8 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { ContextInfo } from "../contexts/ContextInfo";
-import  {Div, H4, Table, DeleteButton, EditButton} from '../components/StyledDetailPage'
-
+import {
+  Div,
+  H4,
+  Table,
+  DeleteButton,
+  EditButton,
+} from "../components/StyledDetailPage";
 
 export default function CustomerDetailPage(props) {
   const customerId = props.match.params.id;
@@ -37,8 +42,8 @@ export default function CustomerDetailPage(props) {
       .then((data) => setCustomerItem(data));
   }
 
-  function customerEdit(){
-      history.push(`/customers/${customerId}/edit`)
+  function customerEdit() {
+    history.push(`/customers/${customerId}/edit`);
   }
 
   function customerDelete() {
@@ -57,7 +62,7 @@ export default function CustomerDetailPage(props) {
     getCustomerDetails();
   }, []);
 
-  function TableReturn({ name, item }) {
+  function TableReturn() {
     const details = [
       { name: "Organisation Number:", item: customerItem.organisationNr },
       { name: "Payment Term:", item: customerItem.paymentTerm },
@@ -69,7 +74,7 @@ export default function CustomerDetailPage(props) {
 
     return details.map((item, index) => {
       return (
-        <tr>
+        <tr key={index}>
           <td>{item.name}</td>
           <td>{item.item}</td>
         </tr>
@@ -98,11 +103,16 @@ export default function CustomerDetailPage(props) {
               </tr>
             </tbody>
           </Table>
-          <DeleteButton className="btn-btn btn-block btn-danger" onClick={customerDelete}>
+          <DeleteButton
+            className="btn-btn btn-block btn-danger"
+            onClick={customerDelete}
+          >
             DELETE
           </DeleteButton>
-          <EditButton onClick={customerEdit}
-          className="btn-btn btn-block btn-warning">
+          <EditButton
+            onClick={customerEdit}
+            className="btn-btn btn-block btn-warning"
+          >
             UPDATE
           </EditButton>
         </Div>

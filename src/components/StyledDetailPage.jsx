@@ -48,5 +48,4 @@ const EditButton = styled(DeleteButton)`
   float: right;
 `;
 
-
-export {Div, H4, Table, DeleteButton, EditButton}
+export { Div, H4, Table, DeleteButton, EditButton };

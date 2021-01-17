@@ -17,26 +17,23 @@ const Button = styled.button`
   font-family: "cursive";
   border-radius: 5px;
   :hover {
-    background-image:linear-gradient(rgb(6, 204, 6), blue);
+    background-image: linear-gradient(rgb(6, 204, 6), blue);
   }
 `;
 const Button2 = styled(Button)`
   :hover {
-    
-    background-image:linear-gradient(rgb(6, 204, 6), purple);
-    
+    background-image: linear-gradient(rgb(6, 204, 6), purple);
   }
 `;
 const Button3 = styled(Button)`
   :hover {
-    background-image:linear-gradient(rgb(6, 204, 6), red);
-    
+    background-image: linear-gradient(rgb(6, 204, 6), red);
   }
 `;
 
 const Button4 = styled(Button)`
   :hover {
-    background-image:linear-gradient(rgb(6, 204, 6), orange);
+    background-image: linear-gradient(rgb(6, 204, 6), orange);
   }
 `;
 

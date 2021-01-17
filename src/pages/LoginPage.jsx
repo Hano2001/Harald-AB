@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ContextInfo } from "../contexts/ContextInfo";
-import{Div, Input, Button} from "../components/StyledLoginPage"
-
+import { Div, Input, Button } from "../components/StyledLoginPage";
 
 export default function LoginPage({ onLogin }) {
   const { loginData, setLoginData } = useContext(ContextInfo);
@@ -50,7 +49,7 @@ export default function LoginPage({ onLogin }) {
           name="password"
           value={loginData.password}
           onChange={handleOnChange}
-          type="text"
+          type="password"
         />
         <Button className="btn-danger" type="submit">
           Login

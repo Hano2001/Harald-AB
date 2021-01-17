@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Item, Div} from "./StyledCustomers";
-
-
+import { Item, Div } from "./StyledCustomers";
 
 export default function CustomerItem({ customerData }) {
   return (

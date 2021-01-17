@@ -1,7 +1,19 @@
 import React, { useEffect, useContext } from "react";
 import NavBar from "../components/NavBar";
 import { ContextInfo } from "../contexts/ContextInfo";
-import {Heading,Div1,Div2,Div3,Div4,P,P2,P3,LeftEye,RightEye,EyeDiv} from "../components/StyledProfilePage"
+import {
+  Heading,
+  Div1,
+  Div2,
+  Div3,
+  Div4,
+  P,
+  P2,
+  P3,
+  LeftEye,
+  RightEye,
+  EyeDiv,
+} from "../components/StyledProfilePage";
 
 export default function ProfilePage({ token }) {
   const { profileData, setProfileData } = useContext(ContextInfo);
